@@ -1,30 +1,41 @@
 # Outfit Moodboard (MVP v1)
 
-A bilingual (English + Russian) fashion helper web app that turns your wardrobe into moodboard-like outfit cards.
+Outfit Moodboard is a lightweight bilingual (Russian-first + English secondary) fashion helper that turns a personal wardrobe into moodboard-like outfit cards.
 
 ## What this MVP includes
 
-- Clear homepage with product explanation
-- Bilingual UI with quick language switch (EN / RU)
-- Wardrobe input form:
-  - item name, category, color
-  - optional material, notes, image
-- Quick text parser to add multiple items at once
-- Clean editable wardrobe grid with remove action
-- Gender presentation selector (masculine / feminine / neutral)
-- Desired vibe input (freeform)
+- Russian-first onboarding with English available from the language switcher
+- Clear 2-step flow:
+  - Step 1: add wardrobe items
+  - Step 2: choose style and generate moodboards
+- Two wardrobe entry methods:
+  - structured manual form
+  - description-based parser with preview before confirmation
+- Parsing supports commas and line breaks
+- Preview cards for parsed items showing:
+  - item name
+  - category
+  - color
+  - material
+- Editable wardrobe grid with remove action
+- Audience selector for the look (menswear / womenswear / unisex)
+- Style presets plus custom free-text style input
 - Rule-based generator that creates 3–5 outfit moodboard cards from wardrobe data
-- Moodboard cards include:
+- Result cards include:
   - outfit title
   - selected clothing items
   - color accents
   - accessory suggestion
-  - short vibe description
-  - occasion suggestion
-- Uses uploaded photos when available
-- Stylish placeholders when photos are missing
-- Demo seed wardrobe data loaded by default
+  - short styling description
+  - suggested occasion
+- Uploaded images appear inside the generated moodboards when available
+- Styled placeholders are used when images are missing
+- Iteration actions after generation:
+  - generate more options
+  - edit wardrobe
+  - change style
 - Mobile-friendly responsive layout
+- Fully static architecture suitable for GitHub Pages
 
 ## Run locally
 
@@ -49,17 +60,17 @@ npm run build
 
 - Vanilla HTML/CSS/JavaScript (module script)
 - Local state only, no backend
-- No authentication/payments/marketplace complexity
+- No authentication, payments, marketplace, or external APIs
+- Static deployability preserved for GitHub Pages
+
+## UX refinement update
+
+- Reworked the quick-add flow into a clearer Russian-first description parser with helper text and confirmation-based preview.
+- Improved Russian localization consistency across categories, control labels, helper copy, and generated result content.
+- Added style preset chips, clearer step separation, and post-generation iteration actions so the user flow feels understandable and repeatable.
 
 ## Next 3 best improvements after MVP
 
-1. **Persistent local storage + import/export wardrobe** so users keep outfits between sessions.
-2. **Smarter outfit engine** (scoring by category balance, palette harmony, weather/season filters).
-3. **Optional backend AI text assistant** to rewrite styling advice and explain why each look works.
-
-
-## Refinement update
-
-- Russian is now the default language on first load, with English still available in the switcher.
-- Added subtle premium motion: section fade-in, card/button hover transitions, smooth input focus states, and soft animated reveal for generated moodboards.
-- Moodboard cards were refined with cleaner visual hierarchy (occasion chip, premium tile treatment, improved card styling) while staying minimal and mobile-friendly.
+1. **Persist wardrobe data locally** with `localStorage` plus import/export.
+2. **Improve parsing quality** so descriptions can infer category/color/material more accurately.
+3. **Make generation smarter** with weather, season, and color harmony heuristics.
