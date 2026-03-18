@@ -1,3 +1,5 @@
+import { demoImageData } from './demo-image-data.js?v=1';
+
 const STORAGE_KEYS = {
   wardrobe: 'outfit-moodboard:wardrobe',
   savedLooks: 'outfit-moodboard:saved-looks',
@@ -47,7 +49,7 @@ const translations = {
     wardrobeList: 'Current wardrobe',
     wardrobeText: 'These are the pieces used to build outfit moodboards.',
     wardrobeCount: 'items',
-    emptyWardrobe: 'No items yet. Add your own pieces or load demo wardrobe.',
+    emptyWardrobe: 'No items yet. Add your own pieces or try the demo wardrobe.',
     remove: 'Remove',
     audience: 'Who is the look for',
     masculine: 'menswear',
@@ -116,7 +118,7 @@ const translations = {
     wardrobeList: 'Текущий гардероб',
     wardrobeText: 'Именно эти вещи используются для сборки moodboard-образов.',
     wardrobeCount: 'вещей',
-    emptyWardrobe: 'Пока нет вещей. Добавьте свои позиции или загрузите демо-гардероб.',
+    emptyWardrobe: 'Пока нет вещей. Добавьте свои позиции или попробуйте демо-гардероб.',
     remove: 'Убрать',
     audience: 'Для кого образ',
     masculine: 'мужской',
@@ -147,7 +149,7 @@ const translations = {
     previewCategory: 'Категория',
     previewColor: 'Цвет',
     previewMaterial: 'Материал',
-    shareResults: 'Скопировать summary',
+    shareResults: 'Скопировать сводку',
     exportResults: 'Экспортировать текст',
     saveLook: 'Сохранить образ',
     savedLooks: 'Сохраненные образы',
@@ -164,13 +166,16 @@ const translations = {
 };
 
 const demoItems = [
-  { name: 'Белая рубашка оксфорд', category: 'top', color: 'Белый', material: 'Хлопок', notes: 'Немного оверсайз', image: null },
-  { name: 'Черные прямые брюки', category: 'bottom', color: 'Черный', material: 'Смесовая шерсть', notes: '', image: null },
-  { name: 'Синие прямые джинсы', category: 'bottom', color: 'Синий', material: 'Деним', notes: 'Высокая посадка', image: null },
-  { name: 'Бежевый тренч', category: 'outerwear', color: 'Бежевый', material: 'Габардин', notes: '', image: null },
-  { name: 'Белые кеды', category: 'shoes', color: 'Белый', material: 'Кожа', notes: '', image: null },
-  { name: 'Черные лоферы', category: 'shoes', color: 'Черный', material: 'Кожа', notes: '', image: null },
-  { name: 'Серебристые серьги-кольца', category: 'accessory', color: 'Серебристый', material: '', notes: '', image: null },
+  { name: 'Белая рубашка оксфорд', category: 'top', color: 'Белый', material: 'Хлопок', notes: 'Классическая база', image: demoImageData[0] },
+  { name: 'Базовая белая футболка', category: 'top', color: 'Белый', material: 'Хлопок', notes: 'Чистая минималистичная база', image: demoImageData[1] },
+  { name: 'Черный лонгслив', category: 'top', color: 'Черный', material: 'Трикотаж', notes: 'Мягкий темный слой', image: demoImageData[2] },
+  { name: 'Синие прямые джинсы', category: 'bottom', color: 'Синий', material: 'Деним', notes: 'Прямой силуэт', image: demoImageData[3] },
+  { name: 'Черные прямые брюки', category: 'bottom', color: 'Черный', material: 'Смесовая шерсть', notes: 'Собранная база', image: demoImageData[4] },
+  { name: 'Бежевый тренч', category: 'outerwear', color: 'Бежевый', material: 'Габардин', notes: 'Легкий городской слой', image: demoImageData[5] },
+  { name: 'Белые кеды', category: 'shoes', color: 'Белый', material: 'Кожа', notes: 'Повседневная обувь', image: demoImageData[6] },
+  { name: 'Черные лоферы', category: 'shoes', color: 'Черный', material: 'Кожа', notes: 'Более собранный вариант', image: demoImageData[7] },
+  { name: 'Серебристые серьги-кольца', category: 'accessory', color: 'Серебристый', material: 'Металл', notes: 'Легкий блеск', image: demoImageData[8] },
+  { name: 'Черная структурная сумка', category: 'accessory', color: 'Черный', material: 'Кожа', notes: 'Четкая форма для акцента', image: demoImageData[9] },
 ];
 
 const defaultState = {
@@ -481,7 +486,9 @@ function renderPreview() {
 }
 
 function renderWardrobeItems() {
-  if (!state.wardrobe.length) return `<p class="empty-hint">${t('emptyWardrobe')}</p>`;
+  if (!state.wardrobe.length) {
+    return `<div class="empty-state-card"><p class="empty-hint">${t('emptyWardrobe')}</p><button type="button" id="seedEmpty" class="ghost">${t('seed')}</button></div>`;
+  }
   return state.wardrobe
     .map(
       (item) => `<article class="wardrobe-item">
@@ -811,11 +818,22 @@ function bindEvents() {
     showFeedback('feedbackItemAdded');
   };
 
-  document.getElementById('seed').onclick = () => {
+  function loadDemoWardrobe() {
     state.wardrobe = demoItems.map((item) => ({ ...item, id: uniqueId('demo') }));
     persistWardrobe();
     showFeedback('feedbackWardrobeSaved');
+  }
+
+  document.getElementById('seed').onclick = () => {
+    loadDemoWardrobe();
   };
+
+  const seedEmptyButton = document.getElementById('seedEmpty');
+  if (seedEmptyButton) {
+    seedEmptyButton.onclick = () => {
+      loadDemoWardrobe();
+    };
+  }
 
   document.getElementById('clear').onclick = () => {
     state.wardrobe = [];

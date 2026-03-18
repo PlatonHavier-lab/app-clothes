@@ -293,6 +293,16 @@ button.ghost {
   margin-bottom: 0;
 }
 
+.empty-state-card {
+  display: grid;
+  justify-items: start;
+  gap: .65rem;
+  padding: .9rem;
+  border: 1px dashed var(--line-strong);
+  border-radius: 18px;
+  background: #fcfaf5;
+}
+
 .wardrobe-section {
   background: transparent;
   border: none;

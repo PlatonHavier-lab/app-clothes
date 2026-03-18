@@ -36,6 +36,7 @@ Outfit Moodboard is a lightweight bilingual (Russian-first + English secondary) 
   - export text file
   - copy individual saved look summaries
 - Uploaded images are stored as data URLs so they can survive page refreshes in local storage
+- Curated built-in demo wardrobe now includes 10 embedded text-safe demo images via `demo-image-data.js`
 - Styled placeholders are used when images are missing
 - Iteration actions after generation:
   - generate more options
@@ -78,7 +79,7 @@ npm run build
 - Added style preset chips, clearer step separation, and post-generation iteration actions so the user flow feels understandable and repeatable.
 - Refined the visual system to be lighter and calmer: fewer heavy surfaces, softer action hierarchy, more compact wardrobe cards, and cleaner result cards.
 - Reduced visual overload across the page by simplifying section treatment, shortening intro copy, and making generated moodboards feel more like styled concepts than text reports.
-- Added return-worthy utility improvements: local wardrobe persistence, saved looks, lightweight sharing/export, stronger parser heuristics, and subtle success feedback.
+- Added return-worthy utility improvements: local wardrobe persistence, saved looks, lightweight sharing/export, stronger parser heuristics, subtle success feedback, and a curated text-embedded image-based demo wardrobe.
 
 ## Next 3 best improvements after MVP
 
