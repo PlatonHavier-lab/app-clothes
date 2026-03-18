@@ -1,0 +1,11 @@
+{
+  "name": "outfit-moodboard-mvp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 4173",
+    "build": "mkdir -p dist && cp index.html app.js styles.css demo-image-data.js dist/",
+    "check": "node --check app.js"
+  }
+}
