@@ -19,18 +19,18 @@ const stylePresets = [
 const translations = {
   en: {
     appName: 'Outfit Moodboard',
-    tagline: 'A simple stylist assistant for outfit ideas from your own wardrobe.',
+    tagline: 'Elegant outfit ideas built from the wardrobe you already own.',
     description:
-      'Step 1: add clothes you already own. Step 2: choose a style and generate moodboards with outfit guidance — without human models.',
+      'Add a few pieces, choose a style, and generate elegant outfit moodboards without human models.',
     language: 'Language',
     step1: 'Step 1',
     step1Title: 'Add wardrobe items',
-    step1Text: 'Use detailed fields or describe several items at once. You will confirm parsed items before they are added.',
+    step1Text: 'Add a few key pieces first. When the base is ready, move into styling.',
     quickAdd: 'Add item by description',
-    quickAddHelper: 'Type one or several items. You can separate them with commas or line breaks. Example: black blazer, white shirt, blue jeans.',
+    quickAddHelper: 'Type one or several items. Separate them with commas or line breaks. Example: black blazer, white shirt, blue jeans.',
     parseItems: 'Preview parsed items',
     previewTitle: 'Preview before adding',
-    previewEmpty: 'Parsed items will appear here before you add them to the wardrobe.',
+    previewEmpty: 'Parsed items will appear here before they are added to the wardrobe.',
     confirmPreview: 'Add to wardrobe',
     itemName: 'Item name',
     category: 'Category',
@@ -38,10 +38,11 @@ const translations = {
     material: 'Material (optional)',
     notes: 'Notes (optional)',
     image: 'Image (optional)',
-    addItem: 'Add item manually',
+    addItem: 'Add manually',
     wardrobeList: 'Current wardrobe',
-    wardrobeText: 'This is the pool used for moodboard generation.',
-    emptyWardrobe: 'No items yet. Load demo data or add your own pieces.',
+    wardrobeText: 'These are the pieces used to build outfit moodboards.',
+    wardrobeCount: 'items',
+    emptyWardrobe: 'No items yet. Add your own pieces or load demo wardrobe.',
     remove: 'Remove',
     audience: 'Who is the look for',
     masculine: 'menswear',
@@ -53,40 +54,42 @@ const translations = {
     styleHint: 'e.g. soft office, casual date, dark academia',
     step2: 'Step 2',
     step2Title: 'Choose style and generate',
-    step2Text: 'Select the mood and generate 3–5 outfit moodboards from the wardrobe above.',
+    step2Text: 'When the wardrobe is ready, generate 3–5 outfit moodboards from those pieces.',
+    step2Inactive: 'Add at least one wardrobe item to continue to styling.',
     generate: 'Generate outfit moodboards',
     generated: 'Outfit moodboards',
     selectedItems: 'Selected items',
     accents: 'Color accents',
-    accessories: 'Suggested accessories',
+    accessories: 'Accessories',
     mood: 'Mood',
-    occasion: 'Best for',
+    occasion: 'Occasion',
     placeholder: 'No photo',
     seed: 'Load demo wardrobe',
-    clear: 'Clear wardrobe',
-    moreOptions: 'Generate more options',
+    clear: 'Clear',
+    moreOptions: 'Show more options',
     editWardrobe: 'Edit wardrobe',
     changeStyle: 'Change style',
-    helperGenerated: 'You can iterate: change the wardrobe, adjust the style, or ask for more options.',
+    helperGenerated: 'Keep refining the result without leaving the page.',
     manualSection: 'Add one item manually',
     previewName: 'Name',
     previewCategory: 'Category',
     previewColor: 'Color',
     previewMaterial: 'Material',
-    resultEmpty: 'Generate outfit moodboards to see styled suggestions here.',
+    styleLabel: 'Style',
+    detailsLabel: 'Details',
   },
   ru: {
     appName: 'Outfit Moodboard',
-    tagline: 'Простой стилист-помощник для образов из ваших собственных вещей.',
+    tagline: 'Элегантные идеи образов из вещей, которые уже есть у вас в гардеробе.',
     description:
-      'Шаг 1: добавьте вещи, которые уже есть в гардеробе. Шаг 2: выберите стиль и получите moodboard-карточки с идеями образов без моделей.',
+      'Добавьте несколько вещей, выберите стиль и получите элегантные moodboard-образы без моделей.',
     language: 'Язык',
     step1: 'Шаг 1',
     step1Title: 'Добавьте вещи из гардероба',
-    step1Text: 'Можно заполнить карточку вещи вручную или вставить несколько описаний сразу. Перед добавлением вы увидите предварительный разбор.',
+    step1Text: 'Сначала соберите базу вещей. Когда гардероб готов, переходите к стилизации.',
     quickAdd: 'Добавить вещь по описанию',
     quickAddHelper: 'Напишите одну или несколько вещей. Можно разделять запятыми или переносами строк. Пример: черный пиджак, белая рубашка, синие джинсы.',
-    parseItems: 'Показать предварительный разбор',
+    parseItems: 'Посмотреть разбор',
     previewTitle: 'Предпросмотр перед добавлением',
     previewEmpty: 'Здесь появятся распознанные вещи до того, как вы добавите их в гардероб.',
     confirmPreview: 'Добавить в гардероб',
@@ -98,9 +101,10 @@ const translations = {
     image: 'Фото (необязательно)',
     addItem: 'Добавить вручную',
     wardrobeList: 'Текущий гардероб',
-    wardrobeText: 'Именно из этих вещей будут собираться moodboard-образы.',
-    emptyWardrobe: 'Пока нет вещей. Загрузите демо-гардероб или добавьте свои.',
-    remove: 'Удалить',
+    wardrobeText: 'Именно эти вещи используются для сборки moodboard-образов.',
+    wardrobeCount: 'вещей',
+    emptyWardrobe: 'Пока нет вещей. Добавьте свои позиции или загрузите демо-гардероб.',
+    remove: 'Убрать',
     audience: 'Для кого образ',
     masculine: 'мужской',
     feminine: 'женский',
@@ -111,27 +115,29 @@ const translations = {
     styleHint: 'например: soft office, casual date, dark academia',
     step2: 'Шаг 2',
     step2Title: 'Выберите стиль и сгенерируйте образы',
-    step2Text: 'Выберите настроение образа и получите 3–5 moodboard-карточек на основе гардероба выше.',
+    step2Text: 'Когда гардероб готов, получите 3–5 moodboard-карточек на его основе.',
+    step2Inactive: 'Сначала добавьте хотя бы одну вещь, чтобы перейти к стилизации.',
     generate: 'Сгенерировать moodboard-образы',
     generated: 'Готовые moodboard-образы',
     selectedItems: 'Вещи в образе',
     accents: 'Цветовые акценты',
     accessories: 'Аксессуары',
-    mood: 'Описание',
-    occasion: 'Куда носить',
+    mood: 'Вайб',
+    occasion: 'Повод',
     placeholder: 'Фото не загружено',
     seed: 'Загрузить демо-гардероб',
-    clear: 'Очистить гардероб',
+    clear: 'Очистить',
     moreOptions: 'Показать еще варианты',
     editWardrobe: 'Изменить гардероб',
     changeStyle: 'Изменить стиль',
-    helperGenerated: 'Можно продолжить: добавить вещи, поменять стиль или получить еще варианты.',
+    helperGenerated: 'Можно спокойно уточнять результат, не выходя со страницы.',
     manualSection: 'Добавить одну вещь вручную',
     previewName: 'Название',
     previewCategory: 'Категория',
     previewColor: 'Цвет',
     previewMaterial: 'Материал',
-    resultEmpty: 'Сгенерируйте moodboard-образы, чтобы увидеть готовые стилистические подборки.',
+    styleLabel: 'Стиль',
+    detailsLabel: 'Детали',
   },
 };
 
@@ -264,9 +270,8 @@ function smartPick(items, style, audience, variantIndex) {
   const isClassic = /classic|minimal|smart|office|класс|миним|смарт/.test(style);
   const isStreet = /street|sport|стрит|спорт/.test(style);
 
-  if (dresses.length && isSoft) {
-    result.push(choose(dresses, variantIndex));
-  } else {
+  if (dresses.length && isSoft) result.push(choose(dresses, variantIndex));
+  else {
     if (tops.length) result.push(choose(tops, variantIndex));
     if (bottoms.length) result.push(choose(bottoms, variantIndex + 1));
   }
@@ -300,8 +305,8 @@ function buildOutfits() {
     const accents = [...new Set(items.map((item) => item.color).filter(Boolean))].slice(0, 3);
     const moodText =
       state.language === 'ru'
-        ? `Образ в стиле «${state.vibe || presetLabel(state.selectedPreset)}» с понятной базой и аккуратным акцентом.`
-        : `A ${state.vibe || presetLabel(state.selectedPreset)} look with clear essentials and one thoughtful accent.`;
+        ? `Стиль «${state.vibe || presetLabel(state.selectedPreset)}» с чистой базой и мягким акцентом.`
+        : `A ${state.vibe || presetLabel(state.selectedPreset)} look with a clean base and a soft accent.`;
 
     return {
       id: `outfit-${Date.now()}-${index}`,
@@ -329,7 +334,7 @@ function addPreviewItemsToWardrobe() {
 function renderPresetButtons() {
   return stylePresets
     .map(
-      (preset) => `<button class="chip-button ${state.selectedPreset === preset.id ? 'active' : ''}" data-preset="${preset.id}">${presetLabel(preset.id)}</button>`
+      (preset) => `<button type="button" class="chip-button ${state.selectedPreset === preset.id ? 'active' : ''}" data-preset="${preset.id}">${presetLabel(preset.id)}</button>`
     )
     .join('');
 }
@@ -357,28 +362,32 @@ function renderWardrobeItems() {
   if (!state.wardrobe.length) return `<p class="empty-hint">${t('emptyWardrobe')}</p>`;
   return state.wardrobe
     .map(
-      (item) => `<article class="wardrobe-item interactive-card">
-        <div class="thumb ${item.image ? '' : 'placeholder'}">${
+      (item) => `<article class="wardrobe-item">
+        <div class="thumb compact-thumb ${item.image ? '' : 'placeholder'}">${
           item.image ? `<img src="${item.image}" alt="${item.name}"/>` : `<span>${categoryLabel(item.category)}</span>`
         }</div>
-        <div>
-          <h3>${item.name}</h3>
-          <p>${categoryLabel(item.category)} · ${item.color || '—'}</p>
-          <p>${item.material || '—'} ${item.notes ? `· ${item.notes}` : ''}</p>
+        <div class="wardrobe-copy">
+          <div class="wardrobe-headline">
+            <h3>${item.name}</h3>
+            <button type="button" data-remove="${item.id}" class="link-button">${t('remove')}</button>
+          </div>
+          <p class="meta-line">${categoryLabel(item.category)} · ${item.color || '—'}</p>
+          <p class="subtle-line">${item.material || '—'} ${item.notes ? `· ${item.notes}` : ''}</p>
         </div>
-        <button data-remove="${item.id}" class="ghost small">${t('remove')}</button>
       </article>`
     )
     .join('');
 }
 
 function renderOutfits() {
-  if (!state.outfits.length) return `<p class="empty-hint">${t('resultEmpty')}</p>`;
   return state.outfits
     .map(
       (outfit, index) => `<article class="moodboard-card moodboard-appear" style="--card-delay: ${index * 70}ms;">
         <div class="moodboard-head">
-          <h3>${outfit.title}</h3>
+          <div>
+            <h3>${outfit.title}</h3>
+            <p class="result-vibe">${outfit.vibeText}</p>
+          </div>
           <span class="chip">${outfit.occasion}</span>
         </div>
         <div class="moodboard-visuals premium-tiles">
@@ -391,29 +400,45 @@ function renderOutfits() {
             )
             .join('')}
         </div>
-        <ul>
-          <li><strong>${t('selectedItems')}:</strong> ${outfit.items.map((item) => item.name).join(', ')}</li>
-          <li><strong>${t('accents')}:</strong> ${outfit.accents.join(', ')}</li>
-          <li><strong>${t('accessories')}:</strong> ${outfit.accessories}</li>
-          <li><strong>${t('mood')}:</strong> ${outfit.vibeText}</li>
-          <li><strong>${t('occasion')}:</strong> ${outfit.occasion}</li>
-        </ul>
+        <div class="result-strip">
+          <div>
+            <span class="meta-label">${t('selectedItems')}</span>
+            <p>${outfit.items.map((item) => item.name).join(', ')}</p>
+          </div>
+        </div>
+        <div class="result-meta-grid compact-meta-grid">
+          <div>
+            <span class="meta-label">${t('accents')}</span>
+            <p>${outfit.accents.join(', ')}</p>
+          </div>
+          <div>
+            <span class="meta-label">${t('accessories')}</span>
+            <p>${outfit.accessories}</p>
+          </div>
+          <div>
+            <span class="meta-label">${t('occasion')}</span>
+            <p>${outfit.occasion}</p>
+          </div>
+        </div>
       </article>`
     )
     .join('');
 }
 
 function render() {
+  const hasWardrobe = state.wardrobe.length > 0;
+  const hasResults = state.outfits.length > 0;
+
   app.innerHTML = `
     <main class="container">
-      <header class="hero card section-fade" style="--delay: 30ms;">
-        <div>
+      <header class="hero hero-lite section-fade" style="--delay: 30ms;">
+        <div class="hero-copy">
           <p class="eyebrow">MVP v1</p>
           <h1>${t('appName')}</h1>
           <p class="tagline">${t('tagline')}</p>
           <p class="description">${t('description')}</p>
         </div>
-        <label class="lang-switch">${t('language')}
+        <label class="lang-switch subtle-control">${t('language')}
           <select id="language">
             <option value="ru" ${state.language === 'ru' ? 'selected' : ''}>Русский</option>
             <option value="en" ${state.language === 'en' ? 'selected' : ''}>English</option>
@@ -421,31 +446,35 @@ function render() {
         </label>
       </header>
 
-      <section class="step-card card section-fade" style="--delay: 70ms;">
-        <div class="step-header">
-          <span class="step-badge">${t('step1')}</span>
+      <section class="step-card step-primary section-fade" style="--delay: 70ms;">
+        <div class="step-header minimal-header">
           <div>
+            <span class="step-badge">${t('step1')}</span>
             <h2>${t('step1Title')}</h2>
             <p>${t('step1Text')}</p>
           </div>
         </div>
-        <div class="step-grid">
-          <section class="sub-card">
+        <div class="step-grid lighter-grid">
+          <section class="sub-card soft-panel">
             <h3>${t('quickAdd')}</h3>
             <p class="helper">${t('quickAddHelper')}</p>
             <label>
-              <textarea id="quickText" rows="4" placeholder="черный пиджак\nбелая рубашка\nсиние джинсы">${state.quickText}</textarea>
+              <textarea id="quickText" rows="4" placeholder="черный пиджак
+белая рубашка
+синие джинсы">${state.quickText}</textarea>
             </label>
-            <button id="parseItems" class="secondary">${t('parseItems')}</button>
+            <div class="inline-actions">
+              <button id="parseItems" class="secondary">${t('parseItems')}</button>
+            </div>
             <div class="preview-box">
               <h4>${t('previewTitle')}</h4>
               ${renderPreview()}
             </div>
           </section>
 
-          <section class="sub-card">
+          <section class="sub-card soft-panel">
             <h3>${t('manualSection')}</h3>
-            <div class="row-2">
+            <div class="row-2 compact-row">
               <label>${t('itemName')}<input id="name" value="${state.newItem.name}" /></label>
               <label>${t('category')}
                 <select id="category">${categoryDefinitions
@@ -453,43 +482,44 @@ function render() {
                   .join('')}</select>
               </label>
             </div>
-            <div class="row-2">
+            <div class="row-2 compact-row">
               <label>${t('color')}<input id="color" value="${state.newItem.color}" /></label>
               <label>${t('material')}<input id="material" value="${state.newItem.material}" /></label>
             </div>
             <label>${t('notes')}<input id="notes" value="${state.newItem.notes}" /></label>
             <label>${t('image')}<input id="image" type="file" accept="image/*" /></label>
-            <div class="actions-row">
-              <button id="addItem">${t('addItem')}</button>
-              <button id="seed" class="secondary">${t('seed')}</button>
+            <div class="actions-row subtle-actions">
+              <button id="addItem" class="secondary">${t('addItem')}</button>
+              <button id="seed" class="ghost">${t('seed')}</button>
               <button id="clear" class="ghost">${t('clear')}</button>
             </div>
           </section>
         </div>
       </section>
 
-      <section class="card wardrobe-section section-fade" style="--delay: 110ms;">
-        <div class="section-topline">
+      <section class="wardrobe-section section-fade" style="--delay: 110ms;">
+        <div class="section-topline wardrobe-topline">
           <div>
-            <h2>${t('wardrobeList')}</h2>
+            <span class="section-kicker">${t('wardrobeList')}</span>
+            <h2>${state.wardrobe.length} ${t('wardrobeCount')}</h2>
             <p>${t('wardrobeText')}</p>
           </div>
         </div>
-        <div class="wardrobe-grid">${renderWardrobeItems()}</div>
+        <div class="wardrobe-grid compact-grid">${renderWardrobeItems()}</div>
       </section>
 
-      <section class="step-card card section-fade" style="--delay: 150ms;">
-        <div class="step-header">
-          <span class="step-badge">${t('step2')}</span>
+      <section class="step-card ${hasWardrobe ? 'step-ready' : 'step-muted'} section-fade" style="--delay: 150ms;">
+        <div class="step-header minimal-header">
           <div>
+            <span class="step-badge">${t('step2')}</span>
             <h2>${t('step2Title')}</h2>
-            <p>${t('step2Text')}</p>
+            <p>${hasWardrobe ? t('step2Text') : t('step2Inactive')}</p>
           </div>
         </div>
-        <div class="step-grid controls-step">
-          <section class="sub-card">
+        <div class="step-grid controls-step single-column">
+          <section class="sub-card soft-panel">
             <label>${t('audience')}
-              <select id="audience">
+              <select id="audience" ${hasWardrobe ? '' : 'disabled'}>
                 <option value="masculine" ${state.audience === 'masculine' ? 'selected' : ''}>${t('masculine')}</option>
                 <option value="feminine" ${state.audience === 'feminine' ? 'selected' : ''}>${t('feminine')}</option>
                 <option value="neutral" ${state.audience === 'neutral' ? 'selected' : ''}>${t('neutral')}</option>
@@ -500,26 +530,33 @@ function render() {
               <p class="helper compact">${t('vibeHelper')}</p>
               <div class="chips-row">${renderPresetButtons()}</div>
             </div>
-            <label>${t('customStyle')}<input id="vibe" value="${state.vibe}" placeholder="${t('styleHint')}" /></label>
-            <button id="generate" class="primary">${t('generate')}</button>
+            <label>${t('customStyle')}<input id="vibe" value="${state.vibe}" placeholder="${t('styleHint')}" ${hasWardrobe ? '' : 'disabled'} /></label>
+            <div class="inline-actions">
+              <button id="generate" ${hasWardrobe ? '' : 'disabled'}>${t('generate')}</button>
+            </div>
           </section>
         </div>
       </section>
 
-      <section class="card section-fade" style="--delay: 190ms;">
-        <div class="section-topline results-header">
-          <div>
-            <h2>${t('generated')}</h2>
-            <p>${t('helperGenerated')}</p>
-          </div>
-          <div class="actions-row iteration-actions ${state.outfits.length ? '' : 'hidden'}">
-            <button id="generateMore" class="secondary">${t('moreOptions')}</button>
-            <button id="focusWardrobe" class="ghost">${t('editWardrobe')}</button>
-            <button id="focusStyle" class="ghost">${t('changeStyle')}</button>
-          </div>
-        </div>
-        <div class="moodboards">${renderOutfits()}</div>
-      </section>
+      ${
+        hasResults
+          ? `<section class="results-section section-fade" style="--delay: 190ms;">
+              <div class="section-topline results-header">
+                <div>
+                  <span class="section-kicker">${t('generated')}</span>
+                  <h2>${t('generated')}</h2>
+                  <p>${t('helperGenerated')}</p>
+                </div>
+                <div class="actions-row iteration-actions">
+                  <button id="generateMore">${t('moreOptions')}</button>
+                  <button id="focusWardrobe" class="ghost">${t('editWardrobe')}</button>
+                  <button id="focusStyle" class="ghost">${t('changeStyle')}</button>
+                </div>
+              </div>
+              <div class="moodboards results-grid">${renderOutfits()}</div>
+            </section>`
+          : ''
+      }
     </main>
   `;
 
@@ -575,12 +612,16 @@ function bindEvents() {
   document.getElementById('clear').onclick = () => {
     state.wardrobe = [];
     state.outfits = [];
+    state.previewItems = [];
     render();
   };
 
-  document.getElementById('audience').onchange = (event) => {
-    state.audience = event.target.value;
-  };
+  const audience = document.getElementById('audience');
+  if (audience) {
+    audience.onchange = (event) => {
+      state.audience = event.target.value;
+    };
+  }
 
   document.querySelectorAll('[data-preset]').forEach((button) => {
     button.onclick = () => {
@@ -589,14 +630,20 @@ function bindEvents() {
     };
   });
 
-  document.getElementById('vibe').oninput = (event) => {
-    state.vibe = event.target.value;
-  };
+  const vibe = document.getElementById('vibe');
+  if (vibe) {
+    vibe.oninput = (event) => {
+      state.vibe = event.target.value;
+    };
+  }
 
-  document.getElementById('generate').onclick = () => {
-    buildOutfits();
-    render();
-  };
+  const generateButton = document.getElementById('generate');
+  if (generateButton) {
+    generateButton.onclick = () => {
+      buildOutfits();
+      render();
+    };
+  }
 
   const moreButton = document.getElementById('generateMore');
   if (moreButton) {
@@ -616,13 +663,14 @@ function bindEvents() {
   const styleButton = document.getElementById('focusStyle');
   if (styleButton) {
     styleButton.onclick = () => {
-      document.querySelector('.controls-step').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.querySelector('.step-muted, .step-ready').scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
   }
 
   document.querySelectorAll('[data-remove]').forEach((button) => {
     button.onclick = () => {
       state.wardrobe = state.wardrobe.filter((item) => item.id !== button.dataset.remove);
+      if (!state.wardrobe.length) state.outfits = [];
       render();
     };
   });

@@ -68,6 +68,8 @@ npm run build
 - Reworked the quick-add flow into a clearer Russian-first description parser with helper text and confirmation-based preview.
 - Improved Russian localization consistency across categories, control labels, helper copy, and generated result content.
 - Added style preset chips, clearer step separation, and post-generation iteration actions so the user flow feels understandable and repeatable.
+- Refined the visual system to be lighter and calmer: fewer heavy surfaces, softer action hierarchy, more compact wardrobe cards, and cleaner result cards.
+- Reduced visual overload across the page by simplifying section treatment, shortening intro copy, and making generated moodboards feel more like styled concepts than text reports.
 
 ## Next 3 best improvements after MVP
 
