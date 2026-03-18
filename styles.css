@@ -9,6 +9,7 @@
   --line: rgba(90, 83, 72, 0.11);
   --line-strong: rgba(90, 83, 72, 0.18);
   --shadow-soft: 0 10px 24px rgba(20, 16, 12, 0.03);
+  --focus-ring: rgba(70, 63, 53, 0.16);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -50,6 +51,19 @@ body {
 .preview-card,
 .wardrobe-item,
 .moodboard-card { padding: .88rem; }
+
+.feedback-toast {
+  position: sticky;
+  top: .7rem;
+  z-index: 20;
+  justify-self: center;
+  padding: .55rem .85rem;
+  border-radius: 999px;
+  background: rgba(35, 34, 32, 0.92);
+  color: #fff;
+  font-size: .85rem;
+  box-shadow: 0 10px 18px rgba(20, 16, 12, 0.08);
+}
 
 .hero-lite {
   display: flex;
@@ -100,8 +114,7 @@ h3 {
 .empty-hint,
 .subtle-line,
 .result-vibe,
-.meta-line,
-.hero-note {
+.meta-line {
   color: var(--muted);
 }
 .description,
@@ -146,8 +159,16 @@ select:focus,
 textarea:focus {
   outline: none;
   border-color: rgba(58, 53, 44, 0.24);
-  box-shadow: 0 0 0 3px rgba(34, 33, 31, 0.05);
+  box-shadow: 0 0 0 3px var(--focus-ring);
   background: #ffffff;
+}
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+.link-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring);
 }
 input:disabled,
 select:disabled,
@@ -238,9 +259,7 @@ button.ghost {
   gap: .85rem;
 }
 .single-column { grid-template-columns: 1fr; }
-.soft-panel {
-  background: var(--bg-soft);
-}
+.soft-panel { background: var(--bg-soft); }
 .row-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -366,6 +385,7 @@ button.ghost {
   border: none;
   padding: 0;
 }
+.saved-looks { margin-top: -.25rem; }
 .iteration-actions button:first-child {
   background: var(--accent);
   color: #fff;
@@ -374,6 +394,9 @@ button.ghost {
   background: transparent;
   color: var(--muted);
   border-color: var(--line);
+}
+.result-actions {
+  margin-top: .65rem;
 }
 
 .moodboards {
@@ -452,9 +475,7 @@ button.ghost {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: .5rem;
 }
-.compact-meta-grid > div {
-  padding-top: .2rem;
-}
+.compact-meta-grid > div { padding-top: .2rem; }
 .meta-label {
   margin-bottom: .16rem;
   padding: 0;
@@ -532,11 +553,13 @@ button.ghost {
     padding-inline: .84rem;
   }
 
-  .iteration-actions {
+  .iteration-actions,
+  .result-actions {
     width: 100%;
   }
 
-  .iteration-actions button {
+  .iteration-actions button,
+  .result-actions button {
     flex: 1 1 100%;
   }
 }

@@ -11,7 +11,8 @@ Outfit Moodboard is a lightweight bilingual (Russian-first + English secondary) 
 - Two wardrobe entry methods:
   - structured manual form
   - description-based parser with preview before confirmation
-- Parsing supports commas and line breaks
+- Parsing supports commas, semicolons, and line breaks
+- Improved Russian parsing heuristics for more natural phrases like colors + materials + clothing types
 - Preview cards for parsed items showing:
   - item name
   - category
@@ -28,12 +29,19 @@ Outfit Moodboard is a lightweight bilingual (Russian-first + English secondary) 
   - accessory suggestion
   - short styling description
   - suggested occasion
-- Uploaded images appear inside the generated moodboards when available
+- Local wardrobe persistence via `localStorage`
+- Saved looks / favorites stored locally on the same device
+- Share/export options for generated looks:
+  - copy summary text
+  - export text file
+  - copy individual saved look summaries
+- Uploaded images are stored as data URLs so they can survive page refreshes in local storage
 - Styled placeholders are used when images are missing
 - Iteration actions after generation:
   - generate more options
   - edit wardrobe
   - change style
+- Subtle feedback messages for save/copy/export actions
 - Mobile-friendly responsive layout
 - Fully static architecture suitable for GitHub Pages
 
@@ -70,9 +78,10 @@ npm run build
 - Added style preset chips, clearer step separation, and post-generation iteration actions so the user flow feels understandable and repeatable.
 - Refined the visual system to be lighter and calmer: fewer heavy surfaces, softer action hierarchy, more compact wardrobe cards, and cleaner result cards.
 - Reduced visual overload across the page by simplifying section treatment, shortening intro copy, and making generated moodboards feel more like styled concepts than text reports.
+- Added return-worthy utility improvements: local wardrobe persistence, saved looks, lightweight sharing/export, stronger parser heuristics, and subtle success feedback.
 
 ## Next 3 best improvements after MVP
 
-1. **Persist wardrobe data locally** with `localStorage` plus import/export.
-2. **Improve parsing quality** so descriptions can infer category/color/material more accurately.
-3. **Make generation smarter** with weather, season, and color harmony heuristics.
+1. **Add seasonal/weather filters** to help narrow suggestions for real-life use.
+2. **Improve parser quality further** so freeform wardrobe descriptions become even more accurate.
+3. **Add lightweight organization tools** such as tags, recent looks, and wardrobe search/filtering.
