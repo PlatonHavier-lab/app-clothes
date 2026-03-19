@@ -7,49 +7,49 @@ const categoryMatchers = [
 ];
 
 const colorMatchers = [
-  ['Light blue', /(light blue|светло-голуб)/i],
-  ['Dark blue', /(dark blue|темно-син)/i],
-  ['Blue', /(blue|голуб|син)/i],
-  ['Beige', /(beige|беж)/i],
-  ['Camel', /(camel)/i],
-  ['Cream', /(cream|молоч|крем)/i],
-  ['Black', /(black|черн)/i],
-  ['White', /(white|бел)/i],
-  ['Grey', /(grey|gray|сер)/i],
-  ['Brown', /(brown|корич)/i],
-  ['Khaki', /(khaki|хаки)/i],
-  ['Olive', /(olive|олив)/i],
-  ['Burgundy', /(burgundy|бордов)/i],
-  ['Red', /(red|красн)/i],
-  ['Green', /(green|зелен)/i],
-  ['Pink', /(pink|розов)/i],
-  ['Purple', /(purple|фиолет)/i],
-  ['Gold', /(gold|золот)/i],
-  ['Silver', /(silver|серебр)/i],
+  ['Светло-голубой', /(light blue|светло-голуб)/i],
+  ['Тёмно-синий', /(dark blue|темно-син)/i],
+  ['Синий', /(blue|голуб|син)/i],
+  ['Бежевый', /(beige|беж)/i],
+  ['Кэмел', /(camel)/i],
+  ['Молочный', /(cream|молоч|крем)/i],
+  ['Чёрный', /(black|черн)/i],
+  ['Белый', /(white|бел)/i],
+  ['Серый', /(grey|gray|сер)/i],
+  ['Коричневый', /(brown|корич)/i],
+  ['Хаки', /(khaki|хаки)/i],
+  ['Оливковый', /(olive|олив)/i],
+  ['Бордовый', /(burgundy|бордов)/i],
+  ['Красный', /(red|красн)/i],
+  ['Зелёный', /(green|зелен)/i],
+  ['Розовый', /(pink|розов)/i],
+  ['Фиолетовый', /(purple|фиолет)/i],
+  ['Золотой', /(gold|золот)/i],
+  ['Серебристый', /(silver|серебр)/i],
 ];
 
 const materialMatchers = [
-  ['Wool', /(wool|шерст)/i],
-  ['Cashmere', /(cashmere|кашемир)/i],
-  ['Cotton', /(cotton|хлоп)/i],
-  ['Denim', /(denim|деним)/i],
-  ['Leather', /(leather|кож)/i],
-  ['Linen', /(linen|льн)/i],
-  ['Silk', /(silk|шелк)/i],
-  ['Knit', /(knit|rib|трикотаж)/i],
-  ['Corduroy', /(corduroy|вельвет)/i],
-  ['Suede', /(suede|замш)/i],
+  ['Шерсть', /(wool|шерст)/i],
+  ['Кашемир', /(cashmere|кашемир)/i],
+  ['Хлопок', /(cotton|хлоп)/i],
+  ['Деним', /(denim|деним)/i],
+  ['Кожа', /(leather|кож)/i],
+  ['Лён', /(linen|льн)/i],
+  ['Шёлк', /(silk|шелк)/i],
+  ['Трикотаж', /(knit|rib|трикотаж)/i],
+  ['Вельвет', /(corduroy|вельвет)/i],
+  ['Замша', /(suede|замш)/i],
 ];
 
 const filler = /(это|мне|нужен|нужна|нужно|есть|у меня|мой|моя|мои|очень|просто|new|my|with|and|для)/gi;
 
 const fallbackCategoryNames = {
-  top: 'Top',
-  bottom: 'Bottom',
-  dress: 'Dress',
-  outerwear: 'Outerwear',
-  shoes: 'Shoes',
-  accessory: 'Accessory',
+  top: 'Верх',
+  bottom: 'Низ',
+  dress: 'Платье',
+  outerwear: 'Верхняя одежда',
+  shoes: 'Обувь',
+  accessory: 'Аксессуар',
 };
 
 export function detectCategory(text) {
@@ -59,7 +59,7 @@ export function detectCategory(text) {
 
 export function detectColor(text) {
   const match = colorMatchers.find(([, matcher]) => matcher.test(text));
-  return match ? match[0] : 'Not specified';
+  return match ? match[0] : 'Цвет не указан';
 }
 
 export function detectMaterial(text) {

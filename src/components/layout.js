@@ -4,11 +4,11 @@ export function createScaffold({ title = '', subtitle = '', body = '', showTabs 
       <div class="phone-shell">
         <header class="topbar">
           <div>
-            <p class="eyebrow">App Clothes</p>
+            <p class="eyebrow">МОЙ ГАРДЕРОБ</p>
             <h1>${title}</h1>
             ${subtitle ? `<p class="subtitle">${subtitle}</p>` : ''}
           </div>
-          <a class="ghost-link" href="#/onboarding">Guide</a>
+          <a class="ghost-link" href="#/onboarding">Гид</a>
         </header>
         <main class="screen-body">${body}</main>
         ${showTabs ? bottomTabs() : ''}
@@ -20,14 +20,14 @@ export function createScaffold({ title = '', subtitle = '', body = '', showTabs 
 function bottomTabs() {
   const active = location.hash.replace('#', '') || '/';
   const tabs = [
-    ['/', 'Home', '⌂'],
-    ['/wardrobe', 'Wardrobe', '◫'],
-    ['/generate', 'Generate', '✦'],
-    ['/saved', 'Saved', '♡'],
+    ['/', 'Главная', '⌂'],
+    ['/wardrobe', 'Гардероб', '◫'],
+    ['/generate', 'Подбор', '✦'],
+    ['/saved', 'Сохранённое', '♡'],
   ];
 
   return `
-    <nav class="tabbar" aria-label="Primary">
+    <nav class="tabbar" aria-label="Основная навигация">
       ${tabs
         .map(([href, label, icon]) => {
           const isActive = active === href;
@@ -38,9 +38,9 @@ function bottomTabs() {
   `;
 }
 
-export function createSectionCard({ kicker = '', title = '', description = '', content = '' }) {
+export function createSectionCard({ kicker = '', title = '', description = '', content = '', extraClass = '' }) {
   return `
-    <section class="card section-card">
+    <section class="card section-card ${extraClass}">
       ${kicker ? `<p class="section-kicker">${kicker}</p>` : ''}
       ${title ? `<h2>${title}</h2>` : ''}
       ${description ? `<p class="section-copy">${description}</p>` : ''}
@@ -56,5 +56,25 @@ export function createEmptyState({ title, text, actionHref, actionLabel }) {
       <p>${text}</p>
       ${actionHref ? `<a class="button primary" href="#${actionHref}">${actionLabel}</a>` : ''}
     </div>
+  `;
+}
+
+export function createCollapsibleCard({ id, kicker, title, preview, content, open = false }) {
+  return `
+    <section class="card collapsible-card ${open ? 'is-open' : ''}" data-collapsible>
+      <button class="collapsible-trigger" type="button" data-collapsible-toggle aria-expanded="${open ? 'true' : 'false'}" aria-controls="${id}">
+        <div>
+          ${kicker ? `<p class="section-kicker">${kicker}</p>` : ''}
+          <h3>${title}</h3>
+          ${preview ? `<p class="section-copy compact-copy">${preview}</p>` : ''}
+        </div>
+        <span class="chevron">⌄</span>
+      </button>
+      <div id="${id}" class="collapsible-panel">
+        <div class="collapsible-inner">
+          ${content}
+        </div>
+      </div>
+    </section>
   `;
 }

@@ -2,14 +2,14 @@ import { createScaffold, createSectionCard } from '../components/layout.js';
 
 export function renderSaved(state) {
   return createScaffold({
-    title: 'Saved Looks',
-    subtitle: 'Legacy saved looks are migrated into the new storage layer, while richer saved workflows are deferred.',
+    title: 'Сохранённые образы',
+    subtitle: 'Маршрут уже существует и принимает мигрированные данные, но продвинутый сценарий сохранённых образов пока отложен.',
     body: createSectionCard({
-      kicker: 'Migration-aware',
-      title: `${state.savedLooks.length} saved look${state.savedLooks.length === 1 ? '' : 's'}`,
+      kicker: 'Миграция',
+      title: `${state.savedLooks.length} ${state.savedLooks.length === 1 ? 'сохранённый образ' : state.savedLooks.length < 5 ? 'сохранённых образа' : 'сохранённых образов'}`,
       description: state.savedLooks.length
         ? state.savedLooks.map((look) => look.title).join(' · ')
-        : 'No saved looks yet. This route exists now so later milestones can build on migrated data safely.',
+        : 'Пока ничего не сохранено. Здесь позже появится полноценная работа с избранными образами.',
     }),
   });
 }

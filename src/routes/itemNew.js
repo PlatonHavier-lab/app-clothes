@@ -17,10 +17,10 @@ export function renderItemNew(state, params, query) {
   const parseSection = `
     <form class="stack-form" data-parse-form>
       <label>
-        Describe one item naturally
-        <textarea name="itemText" rows="4" placeholder="e.g. black leather jacket, beige wool coat, white oxford shirt">${sourceText}</textarea>
+        Опишите одну вещь естественным языком
+        <textarea name="itemText" rows="4" placeholder="например: чёрная кожаная куртка, белая рубашка оксфорд, бежевое шерстяное пальто">${sourceText}</textarea>
       </label>
-      <button class="button primary" type="submit">Parse item draft</button>
+      <button class="button primary" type="submit">Разобрать черновик</button>
     </form>
   `;
 
@@ -28,68 +28,68 @@ export function renderItemNew(state, params, query) {
     <form class="stack-form" data-save-item-form>
       <input type="hidden" name="sourceText" value="${sourceText}" />
       <div class="two-col">
-        <label>Name<input name="name" value="${name}" required /></label>
-        <label>Category
+        <label>Название<input name="name" value="${name}" required /></label>
+        <label>Категория
           <select name="category">
-            <option value="top" ${category === 'top' ? 'selected' : ''}>Top</option>
-            <option value="bottom" ${category === 'bottom' ? 'selected' : ''}>Bottom</option>
-            <option value="dress" ${category === 'dress' ? 'selected' : ''}>Dress</option>
-            <option value="outerwear" ${category === 'outerwear' ? 'selected' : ''}>Outerwear</option>
-            <option value="shoes" ${category === 'shoes' ? 'selected' : ''}>Shoes</option>
-            <option value="accessory" ${category === 'accessory' ? 'selected' : ''}>Accessory</option>
+            <option value="top" ${category === 'top' ? 'selected' : ''}>Верх</option>
+            <option value="bottom" ${category === 'bottom' ? 'selected' : ''}>Низ</option>
+            <option value="dress" ${category === 'dress' ? 'selected' : ''}>Платье</option>
+            <option value="outerwear" ${category === 'outerwear' ? 'selected' : ''}>Верхняя одежда</option>
+            <option value="shoes" ${category === 'shoes' ? 'selected' : ''}>Обувь</option>
+            <option value="accessory" ${category === 'accessory' ? 'selected' : ''}>Аксессуар</option>
           </select>
         </label>
       </div>
       <div class="two-col">
-        <label>Color<input name="color" value="${color}" /></label>
-        <label>Material<input name="material" value="${material}" /></label>
+        <label>Цвет<input name="color" value="${color}" /></label>
+        <label>Материал<input name="material" value="${material}" /></label>
       </div>
       <div class="two-col">
-        <label>Season
+        <label>Сезон
           <select name="season">
-            <option value="all-season" ${season === 'all-season' ? 'selected' : ''}>All-season</option>
-            <option value="spring" ${season === 'spring' ? 'selected' : ''}>Spring</option>
-            <option value="summer" ${season === 'summer' ? 'selected' : ''}>Summer</option>
-            <option value="fall" ${season === 'fall' ? 'selected' : ''}>Fall</option>
-            <option value="winter" ${season === 'winter' ? 'selected' : ''}>Winter</option>
+            <option value="all-season" ${season === 'all-season' ? 'selected' : ''}>Всесезонно</option>
+            <option value="spring" ${season === 'spring' ? 'selected' : ''}>Весна</option>
+            <option value="summer" ${season === 'summer' ? 'selected' : ''}>Лето</option>
+            <option value="fall" ${season === 'fall' ? 'selected' : ''}>Осень</option>
+            <option value="winter" ${season === 'winter' ? 'selected' : ''}>Зима</option>
           </select>
         </label>
-        <label>Style<input name="style" value="${style}" placeholder="minimal, sporty, refined" /></label>
+        <label>Стиль<input name="style" value="${style}" placeholder="минимальный, расслабленный, собранный" /></label>
       </div>
       <div class="two-col">
-        <label>Occasion<input name="occasion" value="${occasion}" placeholder="office, casual, dinner" /></label>
-        <label>Formality
+        <label>Повод<input name="occasion" value="${occasion}" placeholder="офис, каждый день, ужин" /></label>
+        <label>Формальность
           <select name="formality">
-            <option value="everyday" ${formality === 'everyday' ? 'selected' : ''}>Everyday</option>
-            <option value="elevated" ${formality === 'elevated' ? 'selected' : ''}>Elevated</option>
-            <option value="dressy" ${formality === 'dressy' ? 'selected' : ''}>Dressy</option>
+            <option value="everyday" ${formality === 'everyday' ? 'selected' : ''}>Повседневно</option>
+            <option value="elevated" ${formality === 'elevated' ? 'selected' : ''}>Собранно</option>
+            <option value="dressy" ${formality === 'dressy' ? 'selected' : ''}>Нарядно</option>
           </select>
         </label>
       </div>
-      <label>Size<input name="size" value="${size}" placeholder="Optional" /></label>
-      <label>Notes<textarea name="notes" rows="3">${notes}</textarea></label>
-      <div class="inline-actions">
-        <button class="button primary" type="submit" name="intent" value="save">Save item</button>
-        <button class="button secondary" type="submit" name="intent" value="save-add-another">Save &amp; add another</button>
+      <label>Размер<input name="size" value="${size}" placeholder="Необязательно" /></label>
+      <label>Заметки<textarea name="notes" rows="3">${notes}</textarea></label>
+      <div class="inline-actions compact-inline-actions">
+        <button class="button primary" type="submit" name="intent" value="save">Сохранить вещь</button>
+        <button class="button secondary" type="submit" name="intent" value="save-add-another">Сохранить и добавить ещё</button>
       </div>
     </form>
   `;
 
   return createScaffold({
-    title: 'Add Item',
-    subtitle: 'Natural-language input is now the main entry point, followed by a structured draft form.',
+    title: 'Добавить вещь',
+    subtitle: 'Сначала короткое описание, затем аккуратный черновик с полями для уточнения.',
     body: `
       ${createSectionCard({
-        kicker: 'Step 1',
-        title: 'Type one item naturally',
-        description: 'The parser currently infers at least name, category, and color, then lets you refine the draft.',
+        kicker: 'Шаг 1',
+        title: 'Опишите вещь своими словами',
+        description: 'Парсер сейчас определяет как минимум название, категорию и цвет, а затем открывает редактируемый черновик.',
         content: parseSection,
       })}
       ${createSectionCard({
-        kicker: 'Step 2',
-        title: hasDraft ? 'Review item draft' : 'Draft form appears after parsing',
-        description: hasDraft ? 'Refine the inferred fields before saving to your wardrobe.' : 'Parse an item first to open the structured editor.',
-        content: hasDraft ? draftForm : '<p class="section-copy">No draft yet.</p>',
+        kicker: 'Шаг 2',
+        title: hasDraft ? 'Проверьте черновик вещи' : 'Черновик появится после разбора',
+        description: hasDraft ? 'Уточните поля и сохраните вещь в гардероб.' : 'Сначала разберите описание, чтобы открыть структурированную форму.',
+        content: hasDraft ? draftForm : '<p class="section-copy">Черновика пока нет.</p>',
       })}
     `,
   });

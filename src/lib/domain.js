@@ -1,35 +1,57 @@
 const categoryLabels = {
-  top: 'Top',
-  bottom: 'Bottom',
-  dress: 'Dress',
-  outerwear: 'Outerwear',
-  shoes: 'Shoes',
-  accessory: 'Accessory',
+  top: 'Верх',
+  bottom: 'Низ',
+  dress: 'Платье',
+  outerwear: 'Верхняя одежда',
+  shoes: 'Обувь',
+  accessory: 'Аксессуар',
+};
+
+const seasonLabels = {
+  all: 'Все сезоны',
+  'all-season': 'Всесезонно',
+  spring: 'Весна',
+  summer: 'Лето',
+  fall: 'Осень',
+  winter: 'Зима',
+};
+
+const occasionLabels = {
+  all: 'Все случаи',
+  casual: 'На каждый день',
+  office: 'Офис',
+  'smart-casual': 'Смарт-кэжуал',
+  travel: 'Поездка',
+  dinner: 'Ужин',
+  'night-out': 'Вечер',
+  weekend: 'Выходной',
+};
+
+const formalityLabels = {
+  everyday: 'Повседневно',
+  elevated: 'Собранно',
+  dressy: 'Нарядно',
 };
 
 export const categories = Object.entries(categoryLabels).map(([value, label]) => ({ value, label }));
-export const seasons = [
-  { value: 'all', label: 'All seasons' },
-  { value: 'all-season', label: 'All-season' },
-  { value: 'spring', label: 'Spring' },
-  { value: 'summer', label: 'Summer' },
-  { value: 'fall', label: 'Fall' },
-  { value: 'winter', label: 'Winter' },
-];
-export const occasions = [
-  { value: 'all', label: 'All occasions' },
-  { value: 'casual', label: 'Casual' },
-  { value: 'office', label: 'Office' },
-  { value: 'smart-casual', label: 'Smart casual' },
-  { value: 'travel', label: 'Travel' },
-  { value: 'dinner', label: 'Dinner' },
-  { value: 'night-out', label: 'Night out' },
-  { value: 'weekend', label: 'Weekend' },
-];
-export const formalityOptions = ['everyday', 'elevated', 'dressy'];
+export const seasons = Object.entries(seasonLabels).map(([value, label]) => ({ value, label }));
+export const occasions = Object.entries(occasionLabels).map(([value, label]) => ({ value, label }));
+export const formalityOptions = Object.entries(formalityLabels).map(([value, label]) => ({ value, label }));
 
 export function labelForCategory(value) {
-  return categoryLabels[value] || 'Item';
+  return categoryLabels[value] || 'Вещь';
+}
+
+export function labelForSeason(value) {
+  return seasonLabels[value] || 'Всесезонно';
+}
+
+export function labelForOccasion(value) {
+  return occasionLabels[value] || 'Без повода';
+}
+
+export function labelForFormality(value) {
+  return formalityLabels[value] || 'Повседневно';
 }
 
 export function createId(prefix = 'item') {

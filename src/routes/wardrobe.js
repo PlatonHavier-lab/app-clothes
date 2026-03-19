@@ -17,7 +17,7 @@ export function renderWardrobe(state, params, query) {
 
   const filtered = filterWardrobe(state.wardrobe, filters);
   const recentMarkup = state.wardrobe.length
-    ? `<p class="hint-line">Recent: ${state.wardrobe
+    ? `<p class="hint-line">Недавние: ${state.wardrobe
         .slice(-3)
         .reverse()
         .map((item) => item.name)
@@ -27,20 +27,20 @@ export function renderWardrobe(state, params, query) {
   const filtersMarkup = `
     <form class="filters-form" data-filters-form>
       <label>
-        Category
+        Категория
         <select name="category">
-          <option value="all">All categories</option>
+          <option value="all">Все категории</option>
           ${optionList(categories, filters.category)}
         </select>
       </label>
       <label>
-        Season
+        Сезон
         <select name="season">
           ${optionList(seasons, filters.season)}
         </select>
       </label>
       <label>
-        Occasion
+        Повод
         <select name="occasion">
           ${optionList(occasions, filters.occasion)}
         </select>
@@ -51,30 +51,30 @@ export function renderWardrobe(state, params, query) {
   const body = filtered.length
     ? `<div class="item-grid">${filtered.map((item) => itemCard(item)).join('')}</div>`
     : createEmptyState({
-        title: 'Your wardrobe is still empty',
-        text: 'Load the demo wardrobe or add your first item through the new natural-language flow.',
+        title: 'Гардероб пока пустой',
+        text: 'Загрузите демо-гардероб или добавьте первую вещь через новый поток с описанием.',
         actionHref: '/items/new',
-        actionLabel: 'Add an item',
+        actionLabel: 'Добавить вещь',
       });
 
   return createScaffold({
-    title: 'My Wardrobe',
-    subtitle: 'Filter by category, season, and occasion while the richer organization layer is still intentionally light.',
+    title: 'Мой гардероб',
+    subtitle: 'Базовый экран уже помогает просматривать вещи по категории, сезону и поводу.',
     body: `
       ${createSectionCard({
-        kicker: 'Filters',
-        title: 'Browse your current wardrobe',
-        description: 'These filters are foundational and intentionally simple for Milestone 1.',
+        kicker: 'Фильтры',
+        title: 'Просмотр текущего гардероба',
+        description: 'Пока фильтры остаются лёгкими и утилитарными — без расширенной организации.',
         content: `${filtersMarkup}
-          <div class="inline-actions">
-            <a class="button primary" href="#/items/new">Add item</a>
-            <button class="button secondary" type="button" data-seed-demo>Load demo wardrobe</button>
+          <div class="inline-actions compact-inline-actions">
+            <a class="button primary" href="#/items/new">Добавить вещь</a>
+            <button class="button secondary" type="button" data-seed-demo>Загрузить демо</button>
           </div>
           ${recentMarkup}`,
       })}
       ${createSectionCard({
-        kicker: 'Items',
-        title: `${filtered.length} item${filtered.length === 1 ? '' : 's'}`,
+        kicker: 'Вещи',
+        title: `${filtered.length} ${filtered.length === 1 ? 'вещь' : filtered.length < 5 ? 'вещи' : 'вещей'}`,
         content: body,
       })}
     `,

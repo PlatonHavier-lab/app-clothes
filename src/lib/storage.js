@@ -25,7 +25,7 @@ const defaultState = {
     preferredFit: '',
   },
   preferences: {
-    language: 'en',
+    language: 'ru',
     selectedStyle: 'minimal',
   },
   wardrobe: [],
@@ -50,9 +50,9 @@ function normalizeLegacyItem(item, index = 0) {
   const createdAt = nowIso();
   return {
     id: item.id || `legacy-item-${index + 1}`,
-    name: item.name || 'Untitled item',
+    name: item.name || 'Вещь без названия',
     category: item.category || 'top',
-    color: item.color || 'Not specified',
+    color: item.color || 'Цвет не указан',
     material: item.material || '',
     season: 'all-season',
     seasons: ['all-season'],
@@ -74,7 +74,7 @@ function normalizeLegacyLook(look, index = 0) {
   const createdAt = nowIso();
   return {
     id: look.id || `legacy-look-${index + 1}`,
-    title: look.title || `Saved look ${index + 1}`,
+    title: look.title || `Сохранённый образ ${index + 1}`,
     description: look.vibeText || look.description || '',
     occasion: look.occasion || '',
     style: '',
@@ -115,7 +115,7 @@ function migrateLegacyState() {
     ...structuredClone(defaultState),
     migratedFromLegacy: true,
     preferences: {
-      language: legacyPrefs?.language || 'en',
+      language: legacyPrefs?.language || 'ru',
       selectedStyle: legacyPrefs?.selectedPreset || legacyPrefs?.vibe || 'minimal',
     },
     profile: {

@@ -5,51 +5,65 @@ export function renderItemDetails(state, params) {
 
   if (!item) {
     return createScaffold({
-      title: 'Item not found',
-      subtitle: 'This route is active, but the item no longer exists in storage.',
-      body: '<a class="button primary" href="#/wardrobe">Back to wardrobe</a>',
+      title: 'Вещь не найдена',
+      subtitle: 'Похоже, эта позиция уже удалена или недоступна в локальном хранилище.',
+      body: '<a class="button primary" href="#/wardrobe">Вернуться в гардероб</a>',
     });
   }
 
   return createScaffold({
     title: item.name,
-    subtitle: 'Clean edit and delete tools for the wardrobe foundation milestone.',
+    subtitle: 'Здесь можно спокойно поправить поля или удалить вещь без лишней сложности.',
     body: `
       ${createSectionCard({
-        kicker: 'Edit item',
-        title: 'Update wardrobe details',
+        kicker: 'Редактирование',
+        title: 'Обновить данные о вещи',
         content: `
           <form class="stack-form" data-edit-item-form data-item-id="${item.id}">
             <div class="two-col">
-              <label>Name<input name="name" value="${item.name}" required /></label>
-              <label>Category
+              <label>Название<input name="name" value="${item.name}" required /></label>
+              <label>Категория
                 <select name="category">
-                  <option value="top" ${item.category === 'top' ? 'selected' : ''}>Top</option>
-                  <option value="bottom" ${item.category === 'bottom' ? 'selected' : ''}>Bottom</option>
-                  <option value="dress" ${item.category === 'dress' ? 'selected' : ''}>Dress</option>
-                  <option value="outerwear" ${item.category === 'outerwear' ? 'selected' : ''}>Outerwear</option>
-                  <option value="shoes" ${item.category === 'shoes' ? 'selected' : ''}>Shoes</option>
-                  <option value="accessory" ${item.category === 'accessory' ? 'selected' : ''}>Accessory</option>
+                  <option value="top" ${item.category === 'top' ? 'selected' : ''}>Верх</option>
+                  <option value="bottom" ${item.category === 'bottom' ? 'selected' : ''}>Низ</option>
+                  <option value="dress" ${item.category === 'dress' ? 'selected' : ''}>Платье</option>
+                  <option value="outerwear" ${item.category === 'outerwear' ? 'selected' : ''}>Верхняя одежда</option>
+                  <option value="shoes" ${item.category === 'shoes' ? 'selected' : ''}>Обувь</option>
+                  <option value="accessory" ${item.category === 'accessory' ? 'selected' : ''}>Аксессуар</option>
                 </select>
               </label>
             </div>
             <div class="two-col">
-              <label>Color<input name="color" value="${item.color}" /></label>
-              <label>Material<input name="material" value="${item.material || ''}" /></label>
+              <label>Цвет<input name="color" value="${item.color}" /></label>
+              <label>Материал<input name="material" value="${item.material || ''}" /></label>
             </div>
             <div class="two-col">
-              <label>Season<input name="season" value="${item.season || 'all-season'}" /></label>
-              <label>Style<input name="style" value="${item.style || ''}" /></label>
+              <label>Сезон
+                <select name="season">
+                  <option value="all-season" ${item.season === 'all-season' ? 'selected' : ''}>Всесезонно</option>
+                  <option value="spring" ${item.season === 'spring' ? 'selected' : ''}>Весна</option>
+                  <option value="summer" ${item.season === 'summer' ? 'selected' : ''}>Лето</option>
+                  <option value="fall" ${item.season === 'fall' ? 'selected' : ''}>Осень</option>
+                  <option value="winter" ${item.season === 'winter' ? 'selected' : ''}>Зима</option>
+                </select>
+              </label>
+              <label>Стиль<input name="style" value="${item.style || ''}" /></label>
             </div>
             <div class="two-col">
-              <label>Occasion<input name="occasion" value="${item.occasion || ''}" /></label>
-              <label>Formality<input name="formality" value="${item.formality || 'everyday'}" /></label>
+              <label>Повод<input name="occasion" value="${item.occasion || ''}" /></label>
+              <label>Формальность
+                <select name="formality">
+                  <option value="everyday" ${item.formality === 'everyday' ? 'selected' : ''}>Повседневно</option>
+                  <option value="elevated" ${item.formality === 'elevated' ? 'selected' : ''}>Собранно</option>
+                  <option value="dressy" ${item.formality === 'dressy' ? 'selected' : ''}>Нарядно</option>
+                </select>
+              </label>
             </div>
-            <label>Size<input name="size" value="${item.size || ''}" /></label>
-            <label>Notes<textarea name="notes" rows="3">${item.notes || ''}</textarea></label>
-            <div class="inline-actions spaced-actions">
-              <button class="button primary" type="submit">Save changes</button>
-              <button class="button danger" type="button" data-delete-item="${item.id}">Delete item</button>
+            <label>Размер<input name="size" value="${item.size || ''}" /></label>
+            <label>Заметки<textarea name="notes" rows="3">${item.notes || ''}</textarea></label>
+            <div class="inline-actions compact-inline-actions">
+              <button class="button primary" type="submit">Сохранить изменения</button>
+              <button class="button danger" type="button" data-delete-item="${item.id}">Удалить вещь</button>
             </div>
           </form>
         `,

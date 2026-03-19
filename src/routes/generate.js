@@ -2,13 +2,25 @@ import { createScaffold, createSectionCard } from '../components/layout.js';
 
 export function renderGenerate() {
   return createScaffold({
-    title: 'Generate',
-    subtitle: 'The route shell is in place. Advanced generation controls and look rendering are intentionally deferred.',
-    body: createSectionCard({
-      kicker: 'Milestone 1 route',
-      title: 'Generation will build on this shell next',
-      description: 'Hash routing, app shell, and storage are ready so the next milestone can focus on practical generation logic.',
-      content: '<p class="section-copy">No outfit visual modes yet by design.</p>',
-    }),
+    title: 'Подбор образов',
+    subtitle: 'Экран пока остаётся компактным: главный сценарий хорошо виден сразу, без лишнего вертикального шума.',
+    body: `
+      ${createSectionCard({
+        kicker: 'Скоро',
+        title: 'Подготовка к генерации',
+        description: 'В этом этапе мы сохраняем ощущение плотного экрана с заметным главным действием, но саму логику генерации ещё не расширяем.',
+        content: `
+          <div class="generate-stack">
+            <button class="button primary big-action big-generate-action" type="button">Сгенерировать 3 образа</button>
+            <div class="mini-points compact-points">
+              <span>На основе текущего гардероба</span>
+              <span>Без внешних API</span>
+              <span>Подробная логика — в следующем этапе</span>
+            </div>
+          </div>
+        `,
+        extraClass: 'compact-generate-card',
+      })}
+    `,
   });
 }

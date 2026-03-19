@@ -16,7 +16,7 @@ function upsertItem(formData, existingId = null) {
     id: existingId || createId('item'),
     name: String(formData.get('name') || '').trim(),
     category: String(formData.get('category') || 'top'),
-    color: String(formData.get('color') || 'Not specified').trim() || 'Not specified',
+    color: String(formData.get('color') || 'Цвет не указан').trim() || 'Цвет не указан',
     material: String(formData.get('material') || '').trim(),
     season: String(formData.get('season') || 'all-season'),
     seasons: [String(formData.get('season') || 'all-season')],
@@ -67,7 +67,21 @@ function updateItem(form) {
   }));
 }
 
+function bindCollapsibles() {
+  app.querySelectorAll('[data-collapsible]').forEach((wrapper) => {
+    const trigger = wrapper.querySelector('[data-collapsible-toggle]');
+    if (!trigger) return;
+
+    trigger.addEventListener('click', () => {
+      const isOpen = wrapper.classList.toggle('is-open');
+      trigger.setAttribute('aria-expanded', String(isOpen));
+    });
+  });
+}
+
 function bindGlobalEvents() {
+  bindCollapsibles();
+
   app.querySelectorAll('[data-seed-demo]').forEach((button) => {
     button.addEventListener('click', () => {
       setState((state) => seedDemoWardrobe(state));
